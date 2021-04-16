@@ -10,9 +10,6 @@ import login from './pages/login';
 import SignUp from './pages/signup';
 import axios from "axios";
 
-
-
-
   axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
   axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
@@ -23,7 +20,7 @@ function App() {
       <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/about' component={About} />
-        
+
         <Route path='/login' component={login} />
         {/* <Route path='/contact-us' component={Contact} /> */}
         <Route path='/sign-up' component={SignUp} />

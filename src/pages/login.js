@@ -16,12 +16,24 @@ function Login({farmer}) {
    const  handleSubmit = (e) =>{
         e.preventDefault();
         if (username && password) {
-            console.log("true or false1",farmer.isLoggedin);
+          
           dispatch(loginFarmer(username,password));
+            console.log("fff",farmer);
           
         }
        
     };
+    
+    useEffect(() => {
+        console.log('effectis',farmer);
+        return () => {
+            if(farmer){
+                history.push('/');
+            }else{
+                history.push('/login');
+            }
+        }
+    },[farmer])
 
     
     return (
@@ -66,9 +78,9 @@ function Login({farmer}) {
 }
 
 function mapStateToProps(state) {
-    console.log("sttate is",state.auth);
+    console.log("sttate is",state.auth.isLoggedin);
     return {
-        farmer : state.auth
+        farmer : state.auth.isLoggedin
     };
   }
   export default connect(mapStateToProps,{loginFarmer})(Login);
