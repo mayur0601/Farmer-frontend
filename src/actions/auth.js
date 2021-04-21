@@ -67,8 +67,13 @@ export function  loginFarmer(username,password) {
             // everythign went fine
             console.log('Got the token: ', result.data)
             localStorage.setItem('token_farmer', result.data)
-            dispatch(loginSuccessFarmer(farmer.data));
-            localStorage.setItem('user',JSON.stringify(farmer.data));
+            let user = {
+                username:farmer.farmer.username,
+                email:farmer.farmer?.email,
+                id:farmer.farmer._id
+            }
+            dispatch(loginSuccessFarmer(user));
+            localStorage.setItem('user',JSON.stringify(user));
             alert('Success')
            
         } else {
@@ -98,6 +103,7 @@ export function  loginFarmer(username,password) {
         if(result.status=='ok'){
           localStorage.removeItem('user')
           localStorage.removeItem('token_farmer')
+          localStorage.removeItem('farmer_products')
           dispatch(LogoutFarmer());
           alert(result.message)
           return;
@@ -148,7 +154,7 @@ export function signupFarmer(username,email,password,cpassword){
             console.log("signup user",result);
         if (result.status === 'ok') {
             
-          dispatch(loginFarmer(result.farmer.username,result.farmer.cpassword));
+        //   dispatch(loginFarmer(result.farmer.username,result.farmer.cpassword));
           alert('success')
           return;
         } else {

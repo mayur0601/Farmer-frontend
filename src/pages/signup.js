@@ -1,7 +1,9 @@
 
-import React,{useState,useHistory} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import {signupFarmer} from '../actions/auth';
+import { useHistory } from "react-router-dom";
+import '../css/login.css';
 
 function Signup() {
 
@@ -9,8 +11,9 @@ function Signup() {
     const [password,setPassword] = useState('');
     const [cpassword,setcPassword] = useState('');
     const [email,setEmail] = useState('');
+    const [signIn,setSignIn] = useState(false);
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
 
   const  handleSubmit =  (e) =>{
    
@@ -18,12 +21,29 @@ function Signup() {
 
         dispatch(signupFarmer(username,email,password,cpassword));
 
-          
+          setSignIn(true);
     }
 
+    useEffect(() => {
+        console.log('signIn',signIn);
+        
+            if(signIn){
+                history.push('/login');
+            }else{
+                history.push('/sign-up');
+            }
+        
+    },[signIn])
+
     return (
-        <div>
-           <form onSubmit={handleSubmit}>
+        <div className="wrapper">
+            <div className="left">
+                <div className="signin">
+                    <div className="logo">
+                        <img src="" />
+                    </div>
+                   
+                    <form onSubmit={handleSubmit}>
                         <div>
                             <label> username</label>
                             <input 
@@ -54,7 +74,7 @@ function Signup() {
                             />
                         </div>
                         <div>
-                            <label>password</label>
+                            <label>confirm password</label>
                             <input type="password" 
                             className="text-input"
                             value={cpassword}
@@ -62,8 +82,25 @@ function Signup() {
                             required
                             />
                         </div>
-                        <button class="primary-btn">Sign In</button>
+                        <button class="primary-btn">Sign Up</button>
                     </form>
+                   
+                    <div className="links">
+                    <a href="#">Sign in with company or school</a>
+                 </div> 
+                
+                </div>
+            <footer className="main-footer">
+                   <p>copyright &copy; 2021, Sluralpright All right reserved</p>
+                   <div>
+                       <a href="#">terms of use</a> | <a href="#">Privacy Policy</a>
+                   </div> 
+            </footer>
+            </div>
+            <div className="right">
+
+
+            </div>
         </div>
     )
 }

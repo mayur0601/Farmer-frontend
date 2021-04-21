@@ -4,5 +4,7 @@ export const APIUrls = {
   loginFarmer: () => `${API_ROOT}/farmer/login`,
   getFarmer: () => `${API_ROOT}/farmer/farmerInfo`,
   Farmersignup:()=> `${API_ROOT}/farmer/signUp`,
-  FarmerLogout:()=> `${API_ROOT}/farmer/logout`
+  FarmerLogout:()=> `${API_ROOT}/farmer/logout`,
+  addProduct:()=> `${API_ROOT}/farmer/addProduct`,
+  getMyproduct:()=> `${API_ROOT}/vendor/getallProduct`
 };

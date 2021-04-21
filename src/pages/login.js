@@ -3,6 +3,7 @@ import React, {  useState ,useEffect} from "react";
 import { loginFarmer } from '../actions/auth';
 import { connect, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import '../css/login.css';
 
 function Login({farmer}) {
 
@@ -26,13 +27,13 @@ function Login({farmer}) {
     
     useEffect(() => {
         console.log('effectis',farmer);
-        return () => {
+        
             if(farmer){
                 history.push('/');
             }else{
                 history.push('/login');
             }
-        }
+        
     },[farmer])
 
     
@@ -65,9 +66,26 @@ function Login({farmer}) {
                             required
                             />
                         </div>
-                        <button class="primary-btn">Sign In</button>
+                        <button class="primary-btn">Login</button>
                     </form>
+                    <div className="links">
+                    <a href="#">Forgot Password</a>
+                    <a href="#">Sign in with company or school</a>
+                 </div>
+                 <div className="or">
+                   
+                   <hr className="bar"/>
+                   <span>OR</span>
+                   <hr className="bar"/>
+                 </div> 
+                 <a href="#" className="secondary-btn">create an account</a>
                 </div>
+            <footer className="main-footer">
+                   <p>copyright &copy; 2021, Sluralpright All right reserved</p>
+                   <div>
+                       <a href="#">terms of use</a> | <a href="#">Privacy Policy</a>
+                   </div> 
+            </footer>
             </div>
             <div className="right">
 
